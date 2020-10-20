@@ -1,0 +1,153 @@
+﻿@model Core_Project.Models.CategoryViewModel
+@*@{
+        ViewData["Title"] = "AddProduct";
+    }*@
+
+<!-- add Item -->
+<link rel="stylesheet" href="~/css/style.css" />
+
+<div class=" container">
+    <form class="add-product" method="post" enctype="multipart/form-data">
+
+        @*<div class="add-product__images slider">
+            <div class="add-product__image-actions">
+                <div class="add-product__image-action">
+                    <a href="#"><i class="fas fa-plus-square"></i></a>
+                    <a href="#"><i class="fas fa-edit"></i></a>
+                    <a href="#"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+            <div class="slider__items">
+                <div class="slider__item active" style="background-image: url(img/products/product-grey-7.jpg)"></div>
+                <div class="slider__item" style="background-image: url(img/products/product-grey-7.jpg)"></div>
+                <div class="slider__item" style="background-image: url(img/products/product-grey-7.jpg)"></div>
+            </div>
+            <div class="slider__indicators">
+                <span class="slider__indicator active"></span>
+                <span class="slider__indicator"></span>
+                <span class="slider__indicator"></span>
+            </div>
+        </div>*@
+
+
+
+        <div class="add-product__data">
+            <div class="form-controls">
+
+                <section class="tabs">
+                    <div class="tabs__headers">
+                        <div class="tabs__header active">
+                            English
+                        </div>
+                        @*<div class="tabs__header">
+                            Arabic
+                        </div>*@
+
+                    </div>
+                    <div class="tabs__bodies">
+                        <div class="tabs__body active">
+
+
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Product.Name"></label>
+                                <input asp-for="@Model.Product.Name" class="form-control" />
+                                @*<span asp-validation-for="@Model.Product.Name" class="text-danger"></span>*@
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label asp-for="@Model.Product.Discription"></label>
+                                <input asp-for="@Model.Product.Discription" class="form-control" />
+                                @*<span asp-validation-for="@Model.Product.Name" class="text-danger"></span>*@
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label asp-for="@Model.Product.Price"></label>
+                                <input asp-for="@Model.Product.Price" class="form-control" />
+                                @*<span asp-validation-for="@Model.Product.Name" class="text-danger"></span>*@
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label asp-for="@Model.Product.Discount"></label>
+                                <input asp-for="@Model.Product.Discount" class="form-control" />
+                                @*<span asp-validation-for="@Model.Product.Name" class="text-danger"></span>*@
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label asp-for="@Model.Product.Catigory"></label>
+                                @Html.DropDownListFor(m => m.Product.FK_CatigoryId,
+                                new SelectList(Model.Catigories, "Id", "Name"),
+                               "Select Category", new { @class = "form-control" })
+                            </div>
+
+
+
+
+                            @*<div class="form-group">
+                        <ul>
+                            @for (var i = 0; i < Model.PaymentTypes.Count; i++)
+                            {
+                                <li>
+                                    <input type="checkbox" id="@Model.PaymentTypes[i].Name" asp-for="@Model.PaymentTypes[i].IsSelected" value="@Model.PaymentTypes[i].IsSelected" checked="@Model.PaymentTypes[i].IsSelected" />
+                                    <label for="@Model.PaymentTypes[i].Name">@Model.PaymentTypes[i].Name</label>
+                                </li>
+                            }
+                        </ul>
+                    </div>*@
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label asp-for="@Model.PaymentTypes"></label>
+                                <div class="form-group__checkboxs">
+
+                                    @for (int i = 0; i < Model.PaymentTypes.Count; i++)
+                                    {
+                                        <div class="form-group__checkbox">
+
+                                            @Html.CheckBoxFor(m => Model.PaymentTypes[i].IsSelected)
+                                            @Html.DisplayFor(m => Model.PaymentTypes[i].Name)
+
+
+
+                                            @Html.HiddenFor(m => Model.PaymentTypes[i].Name)
+
+                                            @Html.HiddenFor(m => Model.PaymentTypes[i].Id)
+
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <label asp-for="@Model.Product.ProductTags"></label>
+                                <select name="tags" multiple data-role="tagsinput"></select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+                <div class="add-product__actions">
+                    <a href="/Products/Index/" class="btn btn--gray" title="view">
+                        Cancel
+                    </a>
+                    @*<button href="#" class="btn btn--primary">Add</button>*@
+                    <input type="submit" value="Add"  class="btn btn--primary" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

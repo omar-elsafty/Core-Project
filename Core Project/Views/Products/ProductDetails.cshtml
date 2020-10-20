@@ -1,0 +1,139 @@
+﻿@model Core_Project.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+<link rel="stylesheet" href="css/style.css">
+
+
+@*<a asp-page="/EditProduct" class="btn btn-warning btn-sm">Edit</a>
+    @Html.ActionLink("+Add new department", "Add", null, new { @class = "btn btn-primary" })*@
+@*@Html.ActionLink("Edit", "EditProduct", "Products", null, new { @class = "form-control col-2 btn btn-light btn-outline-secondary" })*@
+
+
+@{
+    List<Image> images = Model.Product.Images.ToList<Image>();
+}
+
+
+<div class="product-details container">
+
+    <div>
+        <a href="~/Products/EditProduct/@Model.Product.Id" class="btn btn-success btn-sm" title="edit">
+            <i class='far fa-edit'></i>
+        </a>
+
+        @*<button onclick="ConfirmDelete(@Model.Product.Id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>*@
+
+        <a asp-controller="Products" asp-action="Delete" class="btn btn-danger btn-sm" onclick="ConfirmDelete(@Model.Product.Id)" asp-route-id="@Model.Product.Id"><i class="fas fa-trash-alt"></i></a>
+
+        @*<button onclick="ConfirmDelete(@Model.Product.Id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>*@
+    </div>
+
+    <section class="product-details__main">
+        <!-- images slider -->
+        <div class="slider">
+            <div class="slider__items">
+                @for (int i = 0; i < Model.Product.Images.Count; i++)
+                {
+                    <div class="slider__items">
+
+                        <img class="img-responsive" src="~/Image/@images[i].Name" />
+                    </div>
+
+                }
+
+
+            </div>
+            <div class="slider__indicators">
+                <span class="slider__indicator active"></span>
+                <span class="slider__indicator"></span>
+                <span class="slider__indicator"></span>
+            </div>
+        </div>
+        <!-- product info -->
+        <div class="product-details__info">
+            <h1>@Model.Product.Name</h1>
+
+            <div class="rating">
+                <div class="rating__stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="rating__data">
+                    2 reviews
+                </div>
+            </div>
+            <div class="product-details__amount">
+                @{
+                    int cost = Model.Product.Price - Model.Product.Discount;
+                }
+                @cost $
+
+            </div>
+            @Model.Product.Discription
+
+            <div class="product-details__add">
+                <div class="increment-control">
+                    <a href="#" class="increment-control__action">-</a>
+                    <input type="text" class="form-control" title="Qty" value="1">
+                    <a href="#" class="increment-control__action">+</a>
+                </div>
+                <button href="#" class="btn btn--primary">Add to cart</button>
+            </div>
+            <div class="product-details__meta">
+                Categories:
+                @Model.Product.Catigory.Name
+
+            </div>
+        </div>
+    </section>
+    <section class="tabs">
+        <div class="tabs__headers">
+            <div class="tabs__header active">
+                Description
+            </div>
+            <div class="tabs__header">
+                Additional Information
+            </div>
+            <div class="tabs__header">
+                Reviews (2)
+            </div>
+        </div>
+        <div class="tabs__bodies">
+            <div class="tabs__body active">
+                <div class="product-details__desc">
+                    <p>
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum
+                        dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit,
+                        mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis
+                        dapibus.
+                    </p>
+                    <p>
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum
+                        dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit,
+                        mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis
+                        dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                    </p>
+                </div>
+            </div>
+            <div class="tabs__body ">
+                tab2
+            </div>
+            <div class="tabs__body">
+                tab3
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    function ConfirmDelete(id) {
+        if (confirm("Are you sure to delete product?")) {
+            location.href = `Products/Delete/${id}`;
+        }
+    }
+</script>

@@ -1,0 +1,51 @@
+﻿@model Catigory
+
+@{
+    ViewData["Title"] = "AddCategory";
+}
+
+
+<div class=" container">
+
+    <form class="add-product" method="post" enctype="multipart/form-data">
+        <div class="add-product__data">
+            <div class="form-controls">
+
+                <section class="tabs">
+                    <h2>AddCategory</h2>
+                    <br />
+
+                    <div @*class="form-group "*@>
+                        <label asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" />
+                        @*<span asp-validation-for="@Model.Product.Name" class="text-danger"></span>*@
+                    </div>
+
+
+
+                    <br />
+                    <br />
+                    <div class="add-product__actions">
+                        <a href="/Catigories/Index" class="btn btn--gray" title="view">
+                            Cancel
+                        </a>
+
+                        <input type="submit" value="Add" class="btn btn--primary" />
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,127 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/style.css" />
+
+<div class="container">
+
+    <!-- filters -->
+    <section class="filters">
+        <!-- search box -->
+        <div class="search-box">
+            <input class="search-box__input" placeholder="Search..." type="text" name="txt_search" id="search">
+            <button type="submit" class="search-box__btn" onclick="search()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+
+        <div>
+            <!-- filter header -->
+            <h5>Categories</h5>
+            <!-- filter list -->
+            <ul class="list list--vr-separator" o">
+                @foreach (var item in Model.Catigories)
+                {
+                    <li class="link list__item" onclick="select(this)"><i class="link__icon fas fa-angle-right"></i>@item.Name</li>
+                }
+            </ul>
+        </div>
+
+
+        <div>
+            <h5 style="display:none">Tags</h5>
+            <!-- filter tags -->
+            <div>
+
+                @foreach (var item in Model.Tags)
+                {
+                    <span class="tag">@item.Name</span>
+                    <span readonly value="@item.Name" data-role="tagsinput" id="tag"  onclick="searchh()" />
+                }
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Items -->
+    <section class="item-listing">
+        <!-- tools (sorting , change view , exporting) -->
+        <div class="item-listing__tools ">
+            <select class="form-control" name="" id="" onchange="Order(this)">
+                <option value="1">Featured</option>
+                <option value="2">Price low to high</option>
+                <option value="3">Price high to low</option>
+                <option value="4">Name</option>
+            </select>
+            @*<button class="action-btn" asp-action="AddProduct">*@
+            @*@Html.ActionLink("Add", "AddProduct", "Products", null, new { @class = " btn btn-light" })*@
+
+            <a href="/Products/AddProduct/" class="action-btn" title="view">
+                <i class="fas fa-plus"></i>
+            </a>
+            @*<i class="fas fa-plus"></i>*@
+            @*</button>*@
+        </div>
+        <partial name="_OrdenaryPartial" model="@Model.Products">
+    </section>
+
+</div>
+
+@*<script>
+        function ConfirmDelete(id) {
+            if (confirm("Are you sure to delete product?")) {
+                location.href = `Products/Delete/${id}`;
+            }
+        }
+    </script>*@
+
+
+
+<script>
+    function Order(self) {
+        let x = self.value;
+
+        location.href = `/Products/Index/?value=${x}`;
+    }
+
+    function search() {
+        let s = document.getElementById("search").value;
+        location.href = `/Products/Search/?value=${s}`;
+    }
+
+    $(function () { // equivalent to document on ready state
+        $("body").on("click", "tag", function (s) {
+            
+            location.href = `/Products/Search/?value=${s.innerHTML}`;
+        });
+    });
+
+    function select(li) {
+        let list = li.innerHTML;
+        let o = list.split("i>").pop();
+        location.href = `/Products/SearchC/?value=${o}`;
+    }
+
+
+    function ConfirmDelete(id) {
+        if (confirm("Are you sure to delete product?")) {
+            location.href = `Products/Delete/${id}`;
+        }
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+

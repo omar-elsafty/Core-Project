@@ -1,0 +1,64 @@
+﻿@model List<Product>
+<!-- items -->
+<div class="item-listing__items item-listing--3items" style="width: -webkit-fill-available">
+    <!-- medium item -->
+
+    @{
+        
+    }
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="item-medium-1" >
+            @{
+                int cost = item.Price - item.Discount;
+            }
+            @if (item.Discount > 0)
+            {
+                <div class="item-medium-1__alert">Sale</div>
+            }
+
+
+            <div class="item-medium-1__image image" style="background-image: url('/Image/@item.Images.FirstOrDefault().Name')">
+                <a href="#" class="item-medium-1__action">add to cart</a>
+            </div>
+
+
+            <a href="#">
+                <h4>@item.Name</h4>
+                <div class="flex-row">
+                    <div>
+                        @if (item.Discount > 0)
+                        {
+                            <del>$@item.Price</del>
+                        }
+                        <span class="lable">$@cost</span>
+                    </div>
+                </div>
+            </a>
+            <br />
+            <br />
+            <div class="crud-actions">
+                <a asp-action="ProductDetails" asp-route-id="@item.Id"><i class="far fa-eye"></i></a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Seller"))
+                {
+
+                <a asp-action="EditProduct" asp-route-id="@item.Id"><i class="far fa-edit"></i></a>
+                <button  onclick="ConfirmDelete(@item.Id)"><i class="far fa-trash-alt"></i></button>
+                }
+    
+            </div>
+
+        </div>
+    }
+</div>
+
+<script>
+    function ConfirmDelete(id) {
+        if (confirm("Are you sure to delete product?")) {
+            location.href = `Products/Delete/${id}`;
+        }
+    }
+</script>

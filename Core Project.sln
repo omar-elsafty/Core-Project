@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_Project", "Core Project\Core_Project.csproj", "{6C903550-4D9A-4648-9D90-12EC1C13153D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C903550-4D9A-4648-9D90-12EC1C13153D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C903550-4D9A-4648-9D90-12EC1C13153D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C903550-4D9A-4648-9D90-12EC1C13153D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C903550-4D9A-4648-9D90-12EC1C13153D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {975ECD1E-6A4B-4AB4-A211-FCE50A7A103E}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/mohamedfarag851
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Core\u0020Project\\Core_Project.csproj
+		SccProjectName1 = Core\u0020Project
+		SccLocalPath1 = Core\u0020Project
+	EndGlobalSection
+EndGlobal
